@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Home\HomeSliderController;
 use Illuminate\View\View;
 
 /*
@@ -38,6 +40,19 @@ Route::controller(AdminController::class)->group(function ()
     Route::post('/update/password', 'UpdatePassword')->name('update.password');
 });
 
+//home slide routes
+Route::controller(HomeSliderController::class)->group(function ()
+{
+    Route::get('home/slide', 'HomeSlider')->name('home.slide');
+    Route::post('update/slide', 'UpdateSlide')->name('update.slide');
+});
+
+//about page routes
+Route::controller(AboutPageController::class)->group(function ()
+{
+    Route::get('about/page', 'AboutPage')->name('about.page');
+    Route::post('update/about', 'UpdateAbout')->name('update.about');
+});
 
 
 Route::middleware('auth')->group(function () {
